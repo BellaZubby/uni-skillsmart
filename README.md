@@ -121,9 +121,9 @@ Uni-SkillsMart is a campus-based skill-sharing platform that empowers verified s
 ## 🗂️ Folder Structure
 uni-skillsmart/ 
 ├── client/       
-# Next.js + Tailwind + Redux 
+### Next.js + Tailwind + Redux 
 ├── server/        
-# Express.js + MongoDB 
+### Express.js + MongoDB 
 └── README.md
 
 ---
