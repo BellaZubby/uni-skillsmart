@@ -1,26 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Share+Tech&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* color */
+  --color-primary-100: #001F3F;
+  --color-primary-200: #FF851B;
+  /* font */
+  --font-cabin: "Cabin", sans-serif;
+  --font-shareTech: "Share Tech", sans-serif;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* breakpoints */
+  --breakpoint-fold: 300px;
+  --breakpoint-xxs: 480px;
+  --breakpoint-xs: 600px;
+  --breakpoint-sm: 820px;
+  --breakpoint-md: 1024px;
+  --breakpoint-lg: 1060px;
 }
