@@ -1,12 +1,13 @@
+"use client"
 import HomePage from "./(pages)/Home";
-import PublicNavbar from "./components/Navbar/PublicNavbar";
+import Navbar from "./components/Navbar/MainNavbar";
+// import PublicNavbar from "./components/Navbar/PublicNavbar";
 
 const Home = () => {
   return (
-    <div className="">
-      <PublicNavbar/>
+    <main className="">
       <HomePage/>
-    </div>
+    </main>
   );
 }
 

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Cabin, Share_Tech, Roboto_Condensed, Playfair_Display, Inter} from "next/font/google";
 import "./globals.css";
+import AuthWrapper from "./Providers";
+import Navbar from "./components/Navbar/MainNavbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -9,6 +11,27 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+const cabin = Cabin({
+  variable: "--font-cabin",
+  subsets: ["latin"],
+});
+const shareTech = Share_Tech({
+  variable: "--font-shareTech",
+  subsets: ["latin"],
+  weight: "400"
+});
+const robotoCondensed = Roboto_Condensed({
+  variable: "--font-RC",
+  subsets: ["latin"],
+});
+const playFair = Playfair_Display({
+  variable: "--font-playFair",
+  subsets: ["latin"],
+});
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -25,9 +48,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${cabin.variable} ${shareTech.variable} ${robotoCondensed.variable} ${playFair.variable} ${inter.variable} antialiased`}
       >
-        {children}
+        <AuthWrapper> 
+          <Navbar/>
+          {children}
+        </AuthWrapper>
       </body>
     </html>
   );
