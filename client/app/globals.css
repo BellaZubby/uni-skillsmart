@@ -1,26 +1,44 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* color */
+  --color-primary-100: #001F3F;
+  --color-primary-200: #FF851B;
+  
+  /* font */
+  --font-cabin: var(--font-cabin);
+  --font-shareTech: var(--font-shareTech);
+  --font-RC: var(--font-RC);
+  --font-playfair: var(--font-playfair);
+  --font-inter: var(--font-inter);
+
+
+  /* breakpoints */
+  --breakpoint-fold: 300px;
+  --breakpoint-xxs: 480px;
+  --breakpoint-xs: 600px;
+  --breakpoint-sm: 820px;
+  --breakpoint-md: 1024px;
+  --breakpoint-lg: 1060px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Optional helper classes for convenience */
+.font-inter {
+  font-family: var(--font-inter);
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.font-robotoCondensed {
+  font-family: var(--font-RC);
 }
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.font-cabin {
+  font-family: var(--font-cabin);
+}
+.font-playfair {
+  font-family: var(--font-playfair);
+}
+.font-shareTech {
+  font-family: var(--font-shareTech);
+}
+.active-link {
+  color: #001F3F;
+  font-weight: 900;
 }
