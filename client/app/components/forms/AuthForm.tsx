@@ -109,7 +109,7 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
             <Logo />
           </Link>
           <form onSubmit={handleSubmit} className="mt-10 flex flex-col  justify-center gap-6">
-            <div className="text-center">
+            <div className="text-center text-sm">
               <h2 className="text-xl sm:text-2xl text-primary-100 font-playfair font-semibold mb-2">
                 {type === "register" ? "Create an account" : "Login"} as a{" "}
                 {role}
@@ -117,7 +117,7 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
               {type === "register" && role === "client" && (
                 <p className="text-gray-500">
                   Already have an account?{" "}
-                  <Link href="/login/client" className="text-primary-100">
+                  <Link href="/login/client" className="text-primary-100 font-semibold">
                     Login
                   </Link>
                 </p>
@@ -125,7 +125,7 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
               {type === "register" && role === "provider" && (
                 <p className="text-gray-500">
                   Already have an account?{" "}
-                  <Link href="/login/provider" className="text-primary-100">
+                  <Link href="/login/provider" className="text-primary-100 font-semibold">
                     Login
                   </Link>
                 </p>
@@ -133,7 +133,7 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
               {type === "login" && role === "client" && (
                 <p className="text-gray-500">
                   Don't have an account?{" "}
-                  <Link href="/register/client" className="text-primary-100">
+                  <Link href="/register/client" className="text-primary-100 font-semibold">
                     Register
                   </Link>
                 </p>
@@ -141,7 +141,7 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
               {type === "login" && role === "provider" && (
                 <p className="text-gray-500">
                   Don't have an account?{" "}
-                  <Link href="/register/provider" className="text-primary-100">
+                  <Link href="/register/provider" className="text-primary-100 font-semibold">
                     Register
                   </Link>
                 </p>
@@ -254,6 +254,11 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
               {errors.password && (
                 <p className="text-red-500 text-sm mt-1 pl-3">{errors.password}</p>
               )}
+            </div>
+
+            {/* forgot password feature */}
+            <div className="text-sm text-gray-500">
+                {type === "login"  && <p>Don't remember your password? <Link href={"/forgot-password"} className="text-primary-100 font-semibold">Reset password</Link></p>}
             </div>
             <button type="submit" className="bg-primary-100 border-2 border-primary-100/50 w-full rounded-full cursor-pointer text-white font-semibold py-2 hover:border-primary-100 hover:bg-primary-100/50 hover:text-gray-700 transition duration-300 ease-in-out disabled:bg-primary-100/50 disabled:cursor-not-allowed">
               {loading

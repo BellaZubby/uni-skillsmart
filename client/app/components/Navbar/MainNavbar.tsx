@@ -69,7 +69,8 @@ const Navbar = () => {
       "/login/provider",
       "/register/client",
       "/register/provider",
-      "/forgot-password"
+      "/forgot-password",
+      "/verify-account"
     ]
     
   if (hiddenRoutes.includes(pathname)) return null;
