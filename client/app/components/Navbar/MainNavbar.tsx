@@ -1,22 +1,30 @@
 "use client"
-import { useAuth } from '@/app/hooks/AuthContext';
 import PublicNavbar from './PublicNavbar';
-import ClientNavbar from './ClientSidebar';
-import ProviderNavbar from './ProviderSidebar';
-import UserAvatar from '../UserAvatar';
-import AuthNavbar from './AuthNavbar';
 import { usePathname, useRouter } from 'next/navigation';
-// import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { scroller, scrollSpy } from 'react-scroll';
 
 const Navbar = () => {
-  const { isAuthenticated, user} = useAuth();
    const router = useRouter();
    const pathname = usePathname();
 
   const [showLoginMenu, setShowLoginMenu] = useState(false); // to track when  the login dropdown is visible or not
-  const [showMobileMenu, setShowMobileMenu] = useState(false); // to track when  the login dropdown is visible or not
+  const [showMobileMenu, setShowMobileMenu] = useState(false); // to track when  the mobile dropdown is visible or not
+  const [isTopOfPage, setIsTopOfPage] =useState(false); // to control navbar appearance when a user scrolls off the top of the page
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY === 0) {
+        setIsTopOfPage(true);
+      }
+      if (window.scrollY !== 0) setIsTopOfPage(false);
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  
+  
   const toggleLoginMenu = () => setShowLoginMenu((prev) => !prev); // controls the visibility of the dropdown
   const toggleMobileMenu = () => setShowMobileMenu((prev) => !prev); // controls the visibility of the dropdown
 
@@ -45,22 +53,34 @@ const Navbar = () => {
       }
     }, [showMobileMenu]);
 
+    // closing the login dropdown menu after a navigation
+    useEffect(() => {
+      setShowLoginMenu(false); // close dropdown when route changes
+    }, [pathname])
+
+    
     // create an array of routes that I do not want the navbar to appear on
     const hiddenRoutes = [
       "/dashboard",
       "/profile",
       "/register",
       "/verify",
-      "/login",
+      "/login/client",
+      "/login/provider",
+      "/register/client",
+      "/register/provider",
       "/forgot-password"
     ]
     
-    if (hiddenRoutes.includes(pathname)) {
-      return null; // display not navbar
-    }
-  if (!isAuthenticated) return <PublicNavbar handleLogoClick={handleLogoClick} showLoginMenu={showLoginMenu} showMobileMenu={showMobileMenu} toggleLoginMenu={toggleLoginMenu} toggleMobileMenu={toggleMobileMenu}/>;
-  if (isAuthenticated) return <AuthNavbar handleLogoClick = {handleLogoClick}/>;
-  return null;
+  if (hiddenRoutes.includes(pathname)) return null;
+  // if (!isAuthenticated) return <PublicNavbar handleLogoClick={handleLogoClick} isTopOfPage={isTopOfPage} showLoginMenu={showLoginMenu} showMobileMenu={showMobileMenu} toggleLoginMenu={toggleLoginMenu} toggleMobileMenu={toggleMobileMenu}/>;
+  // if (isAuthenticated) return <AuthNavbar handleLogoClick = {handleLogoClick} isTopOfPage={isTopOfPage}/>;
+  // return null;
+  return (
+    <>
+      <PublicNavbar handleLogoClick={handleLogoClick} isTopOfPage={isTopOfPage} showLoginMenu={showLoginMenu} showMobileMenu={showMobileMenu} toggleLoginMenu={toggleLoginMenu} toggleMobileMenu={toggleMobileMenu}/>
+    </>
+  )
 };
 
 export default Navbar

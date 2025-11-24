@@ -8,14 +8,18 @@ export interface NavLinkProps {
     
 // }
 // to define role based display of navbar for logged in user
-export type UserRole = "admin" | "client" | "provider";
+// export type UserRole = "admin" | "client" | "provider";
+export type UserRole = "client" | "provider";
 
-export interface AuthUser {
+export interface User {
+        role: "client" | "provider";
+        firstName?: string;
+        lastName?: string;
+        imageUrl?: string;
+        email: string;
+}
+
+export interface AuthState {
     isAuthenticated: boolean;
-    user: {
-        role: UserRole;
-        firstName: string;
-        lastName: string;
-        imageUrl: string;
-    }
+    user:  User | null;
 }

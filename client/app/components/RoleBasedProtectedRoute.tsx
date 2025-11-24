@@ -2,7 +2,8 @@
 import React, { useEffect } from 'react'
 import { UserRole } from '../collections/types';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '../hooks/AuthContext';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 
 type Props = {
@@ -12,9 +13,8 @@ type Props = {
 const RoleBasedProtectedRoute = ({children, allowedRoles}: Props) => {
 
     const router = useRouter();
-    const {isAuthenticated, user} = useAuth();
-
-
+    const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated)
+    const user = useSelector((state: RootState) => state.auth.user)
     useEffect(() => {
 
         if (!isAuthenticated) {

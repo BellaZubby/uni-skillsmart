@@ -3,15 +3,16 @@
 // Prevents unauthenticated users from accessing certain pages
 
 import React, { useEffect } from 'react'
-import { useAuth } from '../hooks/AuthContext'
 import { useRouter } from 'next/navigation'
+import { useSelector } from 'react-redux'
+import { RootState } from '../store'
 
 type Props = {
     children: React.ReactNode
 }
 const ProtectedRoute = ({children}: Props) => {
     const router = useRouter();
-    const {isAuthenticated} = useAuth();
+    const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
     
     useEffect(() => {
       if (!isAuthenticated) {

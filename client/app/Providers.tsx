@@ -1,21 +1,7 @@
 "use client";
-import { AuthContext } from "./hooks/AuthContext";
-import { AuthUser } from "./collections/types";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
-
-const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
-    const simulatedUser: AuthUser = {
-        isAuthenticated: true,
-        user: {
-            role: "provider",
-            firstName: "Amabella",
-            lastName: "Nwankwo",
-            imageUrl: ""
-        }
-       
-    };
-
-    return <AuthContext.Provider value={simulatedUser}>{children}</AuthContext.Provider>;
+export const Providers = ({children}: {children: React.ReactNode}) => {
+    return <Provider store={store}>{children}</Provider>
 }
-
-export default AuthWrapper

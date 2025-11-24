@@ -21,6 +21,9 @@
   --breakpoint-md: 1024px;
   --breakpoint-lg: 1060px;
 }
+body {
+  overflow-x: hidden;
+}
 
 /* Optional helper classes for convenience */
 .font-inter {
@@ -41,4 +44,44 @@
 .active-link {
   color: #001F3F;
   font-weight: 900;
+}
+
+.bg-gradient {
+  background: radial-gradient(
+    circle at center,
+    /* circle farthest-corner, */
+    /* var(--color-primary-100) 0%, */
+    #fff 0%,
+    var(--color-primary-100) 10%,
+    transparent 60%,
+    transparent 100%
+  );
+}
+
+/* blob animation */
+@keyframes blobPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+};
+
+.animate-blob {
+  animation: blobPulse 8s ease-in-out infinite;
+}
+
+/* blob spin */
+@keyframes blobSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-blobSpin {
+  animation: blobSpin 60s linear infinite;
 }
