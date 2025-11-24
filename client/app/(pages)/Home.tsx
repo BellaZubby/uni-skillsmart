@@ -9,7 +9,7 @@ import Contact from '../scenes/Contact'
 const HomePage = () => {
   return (
     <div>
-        <Hero/>
+        {/* <Hero/> */}
         <HowItWorks/>
         <Explore/>
         <Benefits/>

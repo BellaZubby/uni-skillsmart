@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Cabin, Share_Tech, Roboto_Condensed, Playfair_Display, Inter} from "next/font/google";
 import "./globals.css";
-import AuthWrapper from "./Providers";
+import { Providers } from "./Providers";
 import Navbar from "./components/Navbar/MainNavbar";
 
 const geistSans = Geist({
@@ -50,10 +50,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${cabin.variable} ${shareTech.variable} ${robotoCondensed.variable} ${playFair.variable} ${inter.variable} antialiased`}
       >
-        <AuthWrapper> 
+        <Providers> 
           <Navbar/>
           {children}
-        </AuthWrapper>
+        </Providers>
       </body>
     </html>
   );

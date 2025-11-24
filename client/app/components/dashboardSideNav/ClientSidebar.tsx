@@ -1,7 +1,6 @@
 // components/navbar/ClientNavbar.tsx
-
 import { clientNavList } from "@/app/collections/data";
-import AuthUserNavLink from "./AuthUserNavLink";
+import AuthUserNavLink from "../Navbar/AuthUserNavLink";
 
 const ClientSidebar = () => {
   return(
