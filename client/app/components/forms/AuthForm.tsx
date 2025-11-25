@@ -13,6 +13,7 @@ export interface AuthFormData {
   lastName?: string;
   email: string;
   password: string;
+  gender: string;
 }
 
 interface AuthFormProps {
@@ -27,13 +28,16 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
     lastName: "",
     email: "",
     password: "",
+    gender: "",
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [showPassword, setShowPassword] = useState(false);
-  const router = useRouter();
+  // const router = useRouter();
 
   // handle input changes and update state
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
 
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -44,7 +48,7 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
     const newErrors: { [key: string]: string } = {}; // creates an empty object to store error messages by key.
     const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&_]).{6,}$/;
 
-    if ((type === "register")) {
+    if (type === "register") {
       // validation for first name
       if (!formData.firstName?.trim()) {
         newErrors.firstName = "First name is required";
@@ -61,6 +65,11 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
         newErrors.lastName = "Last name must be at least 3 characters";
       } else if (formData.lastName.length > 30) {
         newErrors.lastName = "Last name must not exceed 30 characters";
+      }
+
+      // validation for gender
+      if (!formData.gender?.trim()) {
+        newErrors.lastName = "Please select a gender";
       }
     }
 
@@ -108,7 +117,10 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
           <Link href="/">
             <Logo />
           </Link>
-          <form onSubmit={handleSubmit} className="mt-10 flex flex-col  justify-center gap-6">
+          <form
+            onSubmit={handleSubmit}
+            className="mt-10 flex flex-col  justify-center gap-6"
+          >
             <div className="text-center text-sm">
               <h2 className="text-xl sm:text-2xl text-primary-100 font-playfair font-semibold mb-2">
                 {type === "register" ? "Create an account" : "Login"} as a{" "}
@@ -117,7 +129,10 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
               {type === "register" && role === "client" && (
                 <p className="text-gray-500">
                   Already have an account?{" "}
-                  <Link href="/login/client" className="text-primary-100 font-semibold">
+                  <Link
+                    href="/login/client"
+                    className="text-primary-100 font-semibold"
+                  >
                     Login
                   </Link>
                 </p>
@@ -125,7 +140,10 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
               {type === "register" && role === "provider" && (
                 <p className="text-gray-500">
                   Already have an account?{" "}
-                  <Link href="/login/provider" className="text-primary-100 font-semibold">
+                  <Link
+                    href="/login/provider"
+                    className="text-primary-100 font-semibold"
+                  >
                     Login
                   </Link>
                 </p>
@@ -133,7 +151,10 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
               {type === "login" && role === "client" && (
                 <p className="text-gray-500">
                   Don't have an account?{" "}
-                  <Link href="/register/client" className="text-primary-100 font-semibold">
+                  <Link
+                    href="/register/client"
+                    className="text-primary-100 font-semibold"
+                  >
                     Register
                   </Link>
                 </p>
@@ -141,7 +162,10 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
               {type === "login" && role === "provider" && (
                 <p className="text-gray-500">
                   Don't have an account?{" "}
-                  <Link href="/register/provider" className="text-primary-100 font-semibold">
+                  <Link
+                    href="/register/provider"
+                    className="text-primary-100 font-semibold"
+                  >
                     Register
                   </Link>
                 </p>
@@ -150,90 +174,123 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
 
             {type === "register" && (
               <>
-              <div className="flex gap-2">
-                <div>
-                  <label
-                    htmlFor="firstName"
-                    className="text-primary-100 text-sm pl-3 mb-1"
-                  >
-                    First Name
-                  </label>
-                  <input
-                    id="firstName"
-                    type="text"
-                    name="firstName"
-                    placeholder="Enter your first Name"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    disabled={loading}
-                   className="border-2 border-primary-200 py-2 pl-3 w-full outline-0 text-primary-100 placeholder:text-[12px] sm:placeholder:text-sm"
-                  />
-                  {errors.firstName && (
-                    <p className="text-red-500 text-sm mt-1 pl-3">{errors.firstName}</p>
-                  )}
-                </div>
+                <div className="flex gap-2">
+                  <div>
+                    <label
+                      htmlFor="firstName"
+                      className="text-primary-100 text-sm pl-3 mb-1"
+                    >
+                      First Name
+                    </label>
+                    <input
+                      id="firstName"
+                      type="text"
+                      name="firstName"
+                      placeholder="Enter your first Name"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      disabled={loading}
+                      className="border-2 border-primary-200 py-2 pl-3 w-full outline-0 text-primary-100 placeholder:text-[12px] sm:placeholder:text-sm"
+                    />
+                    {errors.firstName && (
+                      <p className="text-red-500 text-sm mt-1 pl-3">
+                        {errors.firstName}
+                      </p>
+                    )}
+                  </div>
 
-                {/* last name */}
-                <div>
-                   <label
-                    htmlFor="lastName"
-                    className="text-primary-100 text-sm pl-3 mb-1"
-                  >
-                    Last Name
-                  </label>
-                  <input
-                  id="lastName"
-                    type="text"
-                    name="lastName"
-                    placeholder="Enter your last Name"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    disabled={loading}
-                    className="border-2 border-primary-200 py-2 pl-3 w-full outline-0 text-primary-100 placeholder:text-[12px] sm:placeholder:text-sm"
-                  />
-                  {errors.lastName && (
-                    <p className="text-red-500 text-sm mt-1 pl-3">{errors.lastName}</p>
-                  )}
+                  {/* last name */}
+                  <div>
+                    <label
+                      htmlFor="lastName"
+                      className="text-primary-100 text-sm pl-3 mb-1"
+                    >
+                      Last Name
+                    </label>
+                    <input
+                      id="lastName"
+                      type="text"
+                      name="lastName"
+                      placeholder="Enter your last Name"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      disabled={loading}
+                      className="border-2 border-primary-200 py-2 pl-3 w-full outline-0 text-primary-100 placeholder:text-[12px] sm:placeholder:text-sm"
+                    />
+                    {errors.lastName && (
+                      <p className="text-red-500 text-sm mt-1 pl-3">
+                        {errors.lastName}
+                      </p>
+                    )}
+                  </div>
                 </div>
-              </div>
-                
               </>
             )}
 
-            {/* for common fields email and password */}
-            <div>
-               <label
-                    htmlFor="email"
+            {/* container for email and gender*/}
+            <div className={`${type === "register" ? "flex gap-2" : "w-full"}`}>
+              {type === "register" && (
+                <div>
+                  <label
+                    htmlFor="gender"
                     className="text-primary-100 text-sm pl-3 mb-1"
                   >
-                    Email
+                    Gender
                   </label>
-              <input
-              id="email"
-                type="text"
-                name="email"
-                placeholder="Enter your email"
-                value={formData.email}
-                onChange={handleChange}
-                disabled={loading}
-                className="border-2 border-primary-200 py-2 pl-3 w-full outline-0 text-primary-100 placeholder:text-[12px] sm:placeholder:text-sm"
-              />
-              {errors.email && (
-                <p className="text-red-500 text-sm mt-1 pl-3">{errors.email}</p>
+                  <select
+                    name="gender"
+                    id="gender"
+                    value={formData.gender}
+                    onChange={handleChange}
+                    disabled={loading}
+                    className="border-2 border-primary-200 py-2 pl-3 w-full outline-0 text-primary-100 placeholder:text-[12px] sm:placeholder:text-sm"
+                  >
+                    <option value={""}>Select</option>
+                    <option value={"male"}>Male</option>
+                    <option value={"female"}>Female</option>
+                  </select>
+                  {errors.lastName && (
+                    <p className="text-red-500 text-sm mt-1 pl-3">
+                      {errors.lastName}
+                    </p>
+                  )}
+                </div>
               )}
+              <div>
+                <label
+                  htmlFor="email"
+                  className="text-primary-100 text-sm pl-3 mb-1"
+                >
+                  Email
+                </label>
+                <input
+                  id="email"
+                  type="text"
+                  name="email"
+                  placeholder="Enter your email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className="border-2 border-primary-200 py-2 pl-3 w-full outline-0 text-primary-100 placeholder:text-[12px] sm:placeholder:text-sm"
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1 pl-3">
+                    {errors.email}
+                  </p>
+                )}
+              </div>
             </div>
-
             {/* for password */}
             <div>
-               <label
-                    htmlFor="password"
-                    className="text-primary-100 text-sm pl-3 mb-1"
-                  >
-                    Password
-                  </label>
+              <label
+                htmlFor="password"
+                className="text-primary-100 text-sm pl-3 mb-1"
+              >
+                Password
+              </label>
               <div className="relative">
                 <input
-                id="password"
+                  id="password"
                   type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="Enter your password"
@@ -252,15 +309,30 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
               </div>
 
               {errors.password && (
-                <p className="text-red-500 text-sm mt-1 pl-3">{errors.password}</p>
+                <p className="text-red-500 text-sm mt-1 pl-3">
+                  {errors.password}
+                </p>
               )}
             </div>
 
             {/* forgot password feature */}
             <div className="text-sm text-gray-500">
-                {type === "login"  && <p>Don't remember your password? <Link href={"/forgot-password"} className="text-primary-100 font-semibold">Reset password</Link></p>}
+              {type === "login" && (
+                <p>
+                  Don't remember your password?{" "}
+                  <Link
+                    href={"/forgot-password"}
+                    className="text-primary-100 font-semibold"
+                  >
+                    Reset password
+                  </Link>
+                </p>
+              )}
             </div>
-            <button type="submit" className="bg-primary-100 border-2 border-primary-100/50 w-full rounded-full cursor-pointer text-white font-semibold py-2 hover:border-primary-100 hover:bg-primary-100/50 hover:text-gray-700 transition duration-300 ease-in-out disabled:bg-primary-100/50 disabled:cursor-not-allowed">
+            <button
+              type="submit"
+              className="bg-primary-100 border-2 border-primary-100/50 w-full rounded-full cursor-pointer text-white font-semibold py-2 hover:border-primary-100 hover:bg-primary-100/50 hover:text-gray-700 transition duration-300 ease-in-out disabled:bg-primary-100/50 disabled:cursor-not-allowed"
+            >
               {loading
                 ? "processing..."
                 : type === "register"
