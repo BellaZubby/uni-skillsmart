@@ -190,7 +190,7 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
                       value={formData.firstName}
                       onChange={handleChange}
                       disabled={loading}
-                      className="border-2 border-primary-200 py-2 pl-3 w-full outline-0 text-primary-100 placeholder:text-[12px] sm:placeholder:text-sm"
+                      className="border-2 border-primary-200 py-2 pl-2 w-full outline-0 text-primary-100 placeholder:text-[12px] sm:placeholder:text-sm"
                     />
                     {errors.firstName && (
                       <p className="text-red-500 text-sm mt-1 pl-3">
@@ -215,7 +215,7 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
                       value={formData.lastName}
                       onChange={handleChange}
                       disabled={loading}
-                      className="border-2 border-primary-200 py-2 pl-3 w-full outline-0 text-primary-100 placeholder:text-[12px] sm:placeholder:text-sm"
+                      className="border-2 border-primary-200 py-2 pl-2 w-full outline-0 text-primary-100 placeholder:text-[12px] sm:placeholder:text-sm"
                     />
                     {errors.lastName && (
                       <p className="text-red-500 text-sm mt-1 pl-3">
@@ -243,7 +243,7 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
                     value={formData.gender}
                     onChange={handleChange}
                     disabled={loading}
-                    className="border-2 border-primary-200 py-2 pl-3 w-full outline-0 text-primary-100 placeholder:text-[12px] sm:placeholder:text-sm"
+                    className="border-2 border-primary-200 py-2 pl-2 w-full outline-0 text-primary-100 placeholder:text-[12px] sm:placeholder:text-sm"
                   >
                     <option value={""}>Select</option>
                     <option value={"male"}>Male</option>
@@ -271,7 +271,7 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
                   value={formData.email}
                   onChange={handleChange}
                   disabled={loading}
-                  className="border-2 border-primary-200 py-2 pl-3 w-full outline-0 text-primary-100 placeholder:text-[12px] sm:placeholder:text-sm"
+                  className="border-2 border-primary-200 py-2 pl-2 w-full outline-0 text-primary-100 placeholder:text-[12px] sm:placeholder:text-sm"
                 />
                 {errors.email && (
                   <p className="text-red-500 text-sm mt-1 pl-3">
@@ -297,7 +297,7 @@ const AuthForm = ({ type, role, onSubmit, loading }: AuthFormProps) => {
                   value={formData.password}
                   onChange={handleChange}
                   disabled={loading}
-                  className="border-2 border-primary-200 py-2 pl-3 w-full outline-0 text-primary-100 placeholder:text-[12px] sm:placeholder:text-sm"
+                  className="border-2 border-primary-200 py-2 pl-2 w-full outline-0 text-primary-100 placeholder:text-[12px] sm:placeholder:text-sm"
                 />
                 <button
                   type="button"

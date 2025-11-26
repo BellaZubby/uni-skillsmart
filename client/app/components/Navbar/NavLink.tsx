@@ -10,10 +10,11 @@ const NavLink = ({ to, label, toggleMobileMenu }: NavLinkProps) => {
       spy={true} // watches scroll position
       smooth={true} // enables smooth scroll
       offset={-100} // accounts for sticky navbar height
+      hashSpy={true}
       duration={500}
       activeClass="active-link" // applies style when section is in view
       onClick={toggleMobileMenu}
-      className="font-cabin text-[16px] text-primary-200 hover:text-primary-100 cursor-pointer transition-colors duration-200"
+      className="font-cabin text-[16px] hover:text-primary-100 cursor-pointer transition-colors duration-200 text-primary-200"
     >
       
         {label}
