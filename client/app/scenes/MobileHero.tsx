@@ -1,22 +1,26 @@
 import Link from "next/link";
 import HeroBlob from "../shared/blob/heroBlob";
-import SecondBlob from "../shared/blob/secondBlob";
 import { motion } from "framer-motion";
 import { slideInFromLeft, slideInFromRight } from "../shared/motion";
+import { CldImage } from "next-cloudinary";
 
-const Hero = () => {
+const MobileHero = () => {
   return (
-    <section
-      id="home"
-      className="min-h-screen grid md:grid-cols-2 items-center justify-center px-12 relative"
-    >
-      {/* left */}
-      <motion.div
-        variants={slideInFromLeft(0.6)}
-        initial="hidden"
-        animate="visible"
-        className="flex flex-col gap-7"
-      >
+    <section id="home" className="min-h-screen mt-24">
+      {/* blob and image */}
+           {/* <HeroBlob /> */}
+           <div>
+              <CldImage
+          className="object-cover w-full clip"
+          src="https://res.cloudinary.com/dxveggtpi/image/upload/v1764247214/erasebg-transformed_bg9lce.png"
+          alt="student"
+          width={800}
+          height={800}
+        />
+           </div>
+        
+      {/* write-up */}
+      <div className="flex flex-col gap-7">
         <h1 className="text-4xl font-extrabold font-shareTech text-primary-100">
           Verified Skills. <br /> Trusted Bookings. Empowering Students.
         </h1>
@@ -39,19 +43,9 @@ const Hero = () => {
             Become a verified provider
           </Link>
         </div>
-      </motion.div>
-      {/* right */}
-        <motion.div 
-        variants={slideInFromRight(0.6)}
-        initial="hidden"
-        animate="visible"
-        className="relative w-[500px] h-[500px]">
-          <div className="absolute top-0 right-0 w-full h-full z-10 animate-blob transition-all duration-300">
-            <HeroBlob />
-          </div>
-        </motion.div>
+      </div>
     </section>
   );
 };
 
-export default Hero;
+export default MobileHero;

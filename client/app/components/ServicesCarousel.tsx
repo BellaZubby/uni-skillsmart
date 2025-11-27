@@ -14,7 +14,7 @@ const services = [
 const ServicesCarousel = () => {
   return (
     <div className='absolute bottom-24 w-full overflow-x-hidden'>
-        <div className='flex animate-marquee space-x-8'>
+        <div className='flex animate-marquee space-x-5'>
             {services.map((service, i) => (
                 <span key={i} className='px-4 py-2 text-md font-cabin font-medium text-primary-100'>
                     {service}
