@@ -55,7 +55,7 @@ const DesktopHero = () => {
           </Link>
         </div>
         {/* users */}
-           <Users/>
+           <Users className="mt-10"/>
       </div>
       {/* right */}
         <div className="relative clip">

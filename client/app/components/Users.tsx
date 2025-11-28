@@ -8,9 +8,13 @@ const userImages = [
     "https://res.cloudinary.com/dxveggtpi/image/upload/v1764237661/pexels-nappy-936090_igc2wf.jpg"
 ]
 
-const Users = () => {
+type UserProp = {
+  className: string
+}
+
+const Users = ({className}: UserProp) => {
   return (
-    <div className='flex font-RC text-primary-100 gap-3 mt-10'>
+    <div className={`flex font-RC text-primary-100 gap-3 ${className}`}>
         <div className='flex'>
              {userImages.map((url, i) => (
                 <div key={i} className='relative w-12 h-12 -ml-4 first:ml-0'>
