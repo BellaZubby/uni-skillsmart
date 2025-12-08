@@ -1,4 +1,5 @@
-import { NavLinkProps } from "./types"
+import { FaBriefcase, FaCalendarCheck, FaCircleCheck, FaClipboardCheck, FaFileContract, FaMagnifyingGlass, FaStar, FaUser } from "react-icons/fa6"
+import { NavLinkProps, Steps } from "./types"
 
 export const navList:NavLinkProps[] = [
     {
@@ -130,3 +131,49 @@ export const mobileClienList:NavLinkProps[] = [
     // profile
 ]
 
+export const clientSteps: Steps[] = [
+    {
+        title: "Sign Up", detail: "Create a client profile with limited access until verified.", icon: FaUser,
+        stepNumber: 1
+    },
+    {
+        title: "Verification", detail: "Upload student ID for admin approval.", icon: FaCircleCheck,
+        stepNumber: 2
+    },
+    {
+        title: "Explore & Connect", detail: "Browse skills and message providers.", icon: FaMagnifyingGlass,
+        stepNumber: 3
+    },
+    {
+        title: "Agree & Schedule", detail: "Upload service details for admin approval.", icon: FaFileContract,
+        stepNumber: 4
+    },
+    {
+        title: "Deliver & Rate", detail: "Complete service, pay in person, and rate providers.", icon: FaStar,
+        stepNumber: 5
+    },
+]
+
+export const providerSteps: Steps[] = [
+    {
+        title: "Sign Up", detail: "Create a provider profile with limited access until verified.", icon: FaUser,
+        stepNumber: 1
+    },
+    {
+        title: "Verification", detail: "Upload student ID for admin approval.", icon: FaCircleCheck,
+        stepNumber: 2
+    },
+    {
+        title: "Showcase Skills", detail: "Add and update skills in your profile.", icon: FaBriefcase,
+        stepNumber: 3
+    },
+    {
+        title: "Manage Bookings", detail: "Agreements approved by admin appear on your dashboard.", icon: FaCalendarCheck,
+        stepNumber: 4
+    },
+    {
+        title: "Deliver & Grow", detail: "Complete service, payment in person, and get rated.", icon: FaClipboardCheck,
+        stepNumber: 5
+    },
+
+]

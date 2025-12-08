@@ -4,6 +4,7 @@
   /* color */
   --color-primary-100: #001F3F;
   --color-primary-200: #FF851B;
+  --color-primary-300: #2972BB;
   
   /* font */
   --font-cabin: var(--font-cabin);
@@ -43,6 +44,7 @@ body {
 }
 .active-link {
   color: #001F3F;
+  /* color: #2972bb; */
   font-weight: 900;
 }
 

@@ -1,13 +1,14 @@
 import Link from "next/link";
-import HeroBlob from "../shared/blob/heroBlob";
-import { motion } from "framer-motion";
-import { slideInFromLeft, slideInFromRight } from "../shared/motion";
 import { CldImage } from "next-cloudinary";
 import Users from "../components/Users";
 
-const MobileHero = () => {
+type Props = {
+  className: string;
+}
+
+const MobileHero = ({className}: Props) => {
   return (
-    <section id="home" className="min-h-screen mt-24">
+    <section id="home" className={`mt-24 pb-14 ${className}`}>
       {/* blob and image */}
       {/* <HeroBlob /> */}
       <div>
@@ -33,13 +34,13 @@ const MobileHero = () => {
         <div className="flex flex-col xs:flex-row xs:items-center xs:justify-center gap-5 font-cabin mx-10">
           <Link
             href={"/register/client"}
-            className="bg-primary-100 py-3 px-3 rounded text-sm text-white font-medium transition-colors duration-300 hover:bg-primary-100/50 hover:text-gray-300"
+            className="bg-primary-100 text-center py-3 px-3 rounded text-sm text-white font-medium transition-colors duration-300 hover:bg-primary-100/50 hover:text-gray-300"
           >
             Start booking services
           </Link>
           <Link
             href={"/register/provider"}
-            className="bg-primary-200 py-3 px-3 rounded text-sm font-medium transition-colors duration-300 hover:bg-primary-200/50 hover:text-gray-500"
+            className="bg-primary-200 text-center py-3 px-3 rounded text-sm font-medium transition-colors duration-300 hover:bg-primary-200/50 hover:text-gray-500"
           >
             Become a verified provider
           </Link>

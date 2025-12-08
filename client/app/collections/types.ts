@@ -1,3 +1,5 @@
+import { IconType } from "react-icons";
+
 export interface NavLinkProps {
     to: string;
     label: string;
@@ -22,4 +24,11 @@ export interface User {
 export interface AuthState {
     isAuthenticated: boolean;
     user:  User | null;
+}
+
+export interface Steps {
+    title: string;
+    detail: string;
+    icon: IconType;
+    stepNumber: number;
 }

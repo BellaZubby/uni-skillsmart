@@ -6,7 +6,11 @@ import useMediaQuery from "../hooks/useMediaQuery";
 import HeroBlob from "../shared/blob/heroBlob";
 import Users from "../components/Users";
 
-const DesktopHero = () => {
+type Props = {
+  className? : string;
+}
+
+const DesktopHero = ({className}: Props) => {
   
 
   // for hero subtle effect
@@ -29,7 +33,7 @@ const DesktopHero = () => {
   }, []);
 
   return (
-    <section id="home" className="min-h-screen w-full grid md:grid-cols-2 grid-cols-1">
+    <section id="home" className={`min-h-screen w-full grid md:grid-cols-2 grid-cols-1 ${className}`}>
       {/* left */}
       <div className="flex flex-col justify-center gap-4 px-5">
         <h1 className="md:text-4xl text-2xl font-extrabold font-shareTech text-primary-100">
