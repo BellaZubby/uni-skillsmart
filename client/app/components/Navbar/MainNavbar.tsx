@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const [showLoginMenu, setShowLoginMenu] = useState(false); // to track when  the login dropdown is visible or not
   const [showMobileMenu, setShowMobileMenu] = useState(false); // to track when  the mobile dropdown is visible or not
-  const [isTopOfPage, setIsTopOfPage] =useState(false); // to control navbar appearance when a user scrolls off the top of the page
+  const [isTopOfPage, setIsTopOfPage] =useState(true); // to control navbar appearance when a user scrolls off the top of the page
   
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +19,9 @@ const Navbar = () => {
       }
       if (window.scrollY !== 0) setIsTopOfPage(false);
     }
+
+    // calls the handleScroll, so it runs once and allows for the transparent background (calls the initial state)
+    handleScroll();
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);

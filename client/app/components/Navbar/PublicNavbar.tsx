@@ -34,13 +34,13 @@ const PublicNavbar = ({
   const initials = `${user?.firstName?.[0] }${user?.lastName?.[0]}`.toUpperCase();
 
   return (
-    <header className="sticky top-0 z-50 font-cabin">
+    <header className="fixed top-0 z-50 font-cabin w-full">
       <nav
         className={`${
           isTopOfPage
             ? "bg-transparent"
-            : "bg-white md:drop-shadow-2xl shadow-md md:shadow-none"
-        } max-w-7xl mx-auto px-6 lg:px-8 py-5 flex justify-between items-center`}
+            : "bg-white md:drop-shadow-2xl shadow-md md:shadow-none transition"
+        } max-w-7xl mx-auto px-6 lg:px-8 py-5 flex justify-between items-center transition-colors duration-500 ease-in-out`}
       >
         {/* Logo */}
         <div onClick={handleLogoClick} className="cursor-pointer block">

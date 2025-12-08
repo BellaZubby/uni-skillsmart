@@ -4,6 +4,7 @@
   /* color */
   --color-primary-100: #001F3F;
   --color-primary-200: #FF851B;
+  --color-primary-300: #2972BB;
   
   /* font */
   --font-cabin: var(--font-cabin);
@@ -43,6 +44,7 @@ body {
 }
 .active-link {
   color: #001F3F;
+  /* color: #2972bb; */
   font-weight: 900;
 }
 
@@ -85,3 +87,50 @@ body {
 .animate-blobSpin {
   animation: blobSpin 60s linear infinite;
 }
+/* visible portion is controlled by the clip path value */
+.clip {
+  /* clip-path: circle(100% at -0% -0%); */
+  clip-path: ellipse(100% 100% at 100% 50%);
+ 
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.home-clip {
+  clip-path: circle();
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-bg {
+  background: linear-gradient(270deg, #001F3F, #FF851B);
+  background-size: 400% 400%;
+  animation: gradientFlow 20s ease infinite;
+}
+
+
